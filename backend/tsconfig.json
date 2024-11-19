@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "typeRoots": ["./src/types"],
+    "target": "ES2020",                 // Modern JavaScript target
+    "module": "commonjs",               // Keep as commonjs for Node.js
+    "strict": true,                     // Enable strict type checks
+    "esModuleInterop": true,            // Ensure compatibility between ES and CommonJS
+    "skipLibCheck": true,               // Speed up compilation by skipping .d.ts files
+    "moduleResolution": "node",         // Resolve modules like Node.js
+    "outDir": "./dist",                 // Output compiled JS here
+    "rootDir": "./src"                  // Source TypeScript files are in ./src
+  },
+  "ts-node": {
+    "compilerOptions": {
+      "typeRoots": ["./src/types"],
+      "target": "ES2020",               // Match the main target for consistency
+      "module": "commonjs",             // Use CommonJS for ts-node as well
+      "moduleResolution": "node"        // Use Node module resolution strategy
+    }
+  },
+  "include": ["src/**/*", "src/types/**/*"]  // Include your custom types
+}
