@@ -9,13 +9,14 @@ const courseSchema = new mongoose.Schema({
   },
   description: {
     type: String,
-    minLength: 50,
+    minLength: 20,
     maxLength: 2000,
     required: true,
   },
   price: {
     type: Number,
     required: true,
+    min: 0,
   },
   imageUrl: {
     type: String,
@@ -24,6 +25,7 @@ const courseSchema = new mongoose.Schema({
   creatorId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Admin",
+    required: true,
   },
 });
 

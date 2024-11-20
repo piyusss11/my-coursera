@@ -5,6 +5,7 @@ import User from "../models/User";
 import { userAuth } from "../middlewares/userAuth";
 import { validateUserRegistration, validateUserLogin } from "../utils/zod";
 import { z } from "zod";
+import Course from "../models/Course";
 
 const userRouter = Router();
 userRouter.post(
@@ -76,6 +77,19 @@ userRouter.post(
     }
   }
 );
+
+userRouter.get("/courses", async (req: Request, res: Response) => {
+  try {
+    const courses = await Course.find();
+    if (!courses) {
+      res.status(500).json({ message: "no courses available for you to view" });
+      return;
+    }
+    res.status(200).json({ message: "Courses available for you", courses });
+  } catch (err) {
+    res.status(500).json({ message: "error getting the courses" });
+  }
+});
 userRouter.get("/purchases", userAuth, (req: Request, res: Response) => {
   res.status(200).json({ message: "user profile", user: req.user });
 });

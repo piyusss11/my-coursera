@@ -3,8 +3,8 @@ import jwt, { JwtPayload } from "jsonwebtoken";
 import Admin from "../models/Admin";
 
 export async function adminAuth(req: Request, res: Response, next: NextFunction) {
-  try {
     const token = req.headers.token as string;
+  try {
     if (!token) {
       res.status(401).json({ message: "Unauthorized as admin" });
       return;
@@ -20,6 +20,7 @@ export async function adminAuth(req: Request, res: Response, next: NextFunction)
       return;
     }
     req.user = admin;
+    next()
   } catch (err) {
     res.status(401).json({ message: "Error authenticating the admin" });
   }
