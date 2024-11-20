@@ -1,6 +1,7 @@
-import mongoose from "mongoose";
+import mongoose, { Model } from "mongoose";
+import { IUser } from "./User";
 
-const adminSchema = new mongoose.Schema({
+const adminSchema = new mongoose.Schema<IUser>({
   firstName: {
     type: String,
     trim: true,
@@ -11,7 +12,7 @@ const adminSchema = new mongoose.Schema({
   lastName: {
     type: String,
     trim: true,
-    minLength: 4,
+    default: "",
     maxLength: 50,
   },
   userName: {
@@ -34,5 +35,5 @@ const adminSchema = new mongoose.Schema({
   },
 });
 
-const Admin = mongoose.model("Admin", adminSchema);
+const Admin: Model<IUser> = mongoose.model<IUser>("Admin", adminSchema);
 export default Admin;

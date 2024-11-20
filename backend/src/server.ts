@@ -10,8 +10,9 @@ dotenv.config()
 
 const app = express();
 
-const port = process.env.PORT
 
+const port = process.env.PORT
+app.use(express.json())
 app.use("/api/v1/user", userRouter);
 app.use("/api/v1/admin", adminRouter);
 app.use("/api/v1/course", courseRouter);
